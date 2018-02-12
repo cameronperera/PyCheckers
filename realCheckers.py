@@ -98,7 +98,7 @@ def displayBoard():
 
 
 def displayBoardReverse():
-    board.reverseBoard()
+    board.reverseBoardView()
     board.actualBoardReversal()
     board.printCheckerBoard()
 
@@ -592,20 +592,20 @@ def pressAnyKey():
 clear()
 while True:
     board = board.resetBoard(board)
-    board.updateBoard([2, 1], emptyCell)
-    board.updateBoard([1, 2], emptyCell)
-    board.updateBoard([3, 2], emptyCell)
-    board.updateBoard([2, 3], emptyCell)
-    board.updateBoard([1, 4], emptyCell)
-    board.updateBoard([3, 4], emptyCell)
-    board.updateBoard([2, 5], emptyCell)
-    board.updateBoard([1, 6], emptyCell)
-    board.updateBoard([3, 6], emptyCell)
-    board.updateBoard([2, 7], emptyCell)
-    board.updateBoard([1, 8], emptyCell)
-    board.updateBoard([3, 8], emptyCell)
-    board.updateBoard([5, 4], whitePiece)
-    board.updateBoard([5, 6], whitePiece)
+    # board.updateBoard([2, 1], emptyCell)
+    # board.updateBoard([1, 2], emptyCell)
+    # board.updateBoard([3, 2], emptyCell)
+    # board.updateBoard([2, 3], emptyCell)
+    # board.updateBoard([1, 4], emptyCell)
+    # board.updateBoard([3, 4], emptyCell)
+    # board.updateBoard([2, 5], emptyCell)
+    # board.updateBoard([1, 6], emptyCell)
+    # board.updateBoard([3, 6], emptyCell)
+    # board.updateBoard([2, 7], emptyCell)
+    # board.updateBoard([1, 8], emptyCell)
+    # board.updateBoard([3, 8], emptyCell)
+    # board.updateBoard([5, 4], whitePiece)
+    # board.updateBoard([5, 6], whitePiece)
     flow = menu()
     flowControl = True
     chainCheck = True

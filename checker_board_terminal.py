@@ -61,7 +61,7 @@ class CheckerBoard(object):
             row += 1
             endRow += 1
 
-    def reverseBoard(self):
+    def reverseBoardView(self):
         return self.board.reverse()
 
     def actualBoardReversal(self):
