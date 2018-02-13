@@ -103,7 +103,7 @@ def displayBoard():
 
 
 def displayBoardReverse():
-    board.reverseBoard()
+    board.reverseBoardView()
     board.actualBoardReversal()
     board.printCheckerBoard()
 
