@@ -169,6 +169,83 @@ class TestGame(unittest.TestCase):
         validMoves = lg.checkIfMoveIsValid(testAvailableMoves, self.board)
         self.assertEqual(validMoves, [[5, 4], [5, 6]])
 
+    def test_SixThreeCoords_ShouldReturnFiveTwo_FiveFourCoords(self):
+        result = lg.calculateAvailableMoves([6, 3])
+        expected = [[5, 2], [5, 4]]
+        self.assertEqual(expected, result)
+
+    def test_SixThreeCoords_ShouldReturnFiveTwo_FiveFour_SevenTwo_SevenFourCoords(self):
+        result = lg.calculateKingMoves([6, 3])
+        expected = [[5, 2], [5, 4], [7, 2], [7, 4]]
+        self.assertEqual(expected, result)
+        
+    def test_OneLegalMoveOneIllegalMove_ShouldReturnOnlyLegalMove(self):
+        result = lg.endLocationCheck([[5, 4], [6, 3]], self.board)
+        self.assertEqual([[5, 4]], result)
+
+    def test_RedPieceOnKingsRow_ShouldReturnTrueAndPieceBecomesKingPiece(self):
+        self.board.updateBoard([1, 2], redPiece)
+        result = lg.checkKingsRow(0, self.board)
+        resultPieceType = self.board.pieceType([1, 2])
+        self.assertTrue(result)
+        self.assertEqual(kingRedPiece, resultPieceType)
+
+    def test_CheckIfGameOverOnFreshBoard_ShouldReturnFalse(self):
+        result = lg.checkIfGameOver(1, self.board)
+        self.assertFalse(result)
+
+    def test_CheckIfGameOverOnNoWhitesBoard_ShouldReturnTrue(self):
+        self.board.updateBoard([1, 2], emptyCell)
+        self.board.updateBoard([1, 4], emptyCell)
+        self.board.updateBoard([1, 6], emptyCell)
+        self.board.updateBoard([1, 8], emptyCell)
+        self.board.updateBoard([2, 1], emptyCell)
+        self.board.updateBoard([2, 3], emptyCell)
+        self.board.updateBoard([2, 5], emptyCell)
+        self.board.updateBoard([2, 7], emptyCell)
+        self.board.updateBoard([3, 2], emptyCell)
+        self.board.updateBoard([3, 4], emptyCell)
+        self.board.updateBoard([3, 6], emptyCell)
+        self.board.updateBoard([3, 8], emptyCell)
+        result = lg.checkIfGameOver(1, self.board)
+        self.assertTrue(result)
+
+    def test_CheckForLegalMovesOnFreshBoard_ShouldReturnTrue(self):
+        result = lg.checkForLegalMoves(0, self.board)
+        self.assertTrue(result)
+
+    def test_CheckForLegalMovesOnFixedBoard_ShouldReturnFalse(self):
+        self.board.updateBoard([4, 1], redPiece)
+        self.board.updateBoard([4, 3], redPiece)
+        self.board.updateBoard([4, 5], redPiece)
+        self.board.updateBoard([4, 7], redPiece)
+        self.board.updateBoard([5, 2], redPiece)
+        self.board.updateBoard([5, 4], redPiece)
+        self.board.updateBoard([5, 6], redPiece)
+        self.board.updateBoard([5, 8], redPiece)
+        result = lg.checkForLegalMoves(0, self.board)
+        self.assertFalse(result)
+
+    def test_WhitePieceAtFiveFour_ShouldReturnTwoJumpMoves(self):
+        self.board.updateBoard([5, 4], whitePiece)
+        result = lg.scanBoard(0, self.board)
+        expected = {1: [[6, 3], [[4, 5]]], 2: [[6, 5], [[4, 3]]]}
+        self.assertEqual(expected, result)
+
+    def test_KingPiece_ShouldReturnFourJumpMoves(self):
+        self.board.updateBoard([5, 4], kingRedPiece)
+        self.board.updateBoard([6, 3], whitePiece)
+        self.board.updateBoard([6, 5], whitePiece)
+        self.board.updateBoard([4, 3], whitePiece)
+        self.board.updateBoard([4, 5], whitePiece)
+        self.board.updateBoard([3, 2], emptyCell)
+        self.board.updateBoard([3, 6], emptyCell)
+        self.board.updateBoard([7, 2], emptyCell)
+        self.board.updateBoard([7, 4], emptyCell)
+        self.board.updateBoard([7, 6], emptyCell)
+        result = lg.scanBoard(0, self.board)
+        expected = {1: [[5, 4], [[3, 2], [3, 6], [7, 2], [7, 6]]]}
+        self.assertEqual(expected, result)
 
 
 # class TestCheckers(unittest.TestCase):
