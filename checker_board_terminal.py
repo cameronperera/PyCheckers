@@ -44,8 +44,8 @@ class CheckerBoard(object):
             return True
         return False
 
-    def resetBoard(self, other):
-        # other.board = CheckerBoard()
+    @staticmethod
+    def resetBoard():
         return CheckerBoard()
 
     def printCheckerBoard(self):
